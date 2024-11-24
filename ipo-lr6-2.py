@@ -1,30 +1,25 @@
-w = 6 
+w = 6
 h = 5
-a = 0
-sum = 0
-kolvo = w * h
 spisok = [-15, -4, -2, -7, 0, 3, 5, 12, 9]
-spisok.extend(spisok)#добавляет в конец списка 3 раза
-spisok.extend(spisok)
-spisok.extend(spisok)
-dlina = h * w
-while len(spisok) != dlina + 1:#пока ждина не равна длине + 1
-    spisok.pop(dlina)#значение списка с индексом dlina
-for i in range(1):#проходит i 1 раз
-    for j in spisok:#проходит j по spisok
-        if a == 0:
-            print(j, end=' ')#написат j в конце строки
-            if j % 3 != 0:
-                sum+=j
-        elif a % w != 0:
-            print(j, end=' ')#написат j в конце строки
-            if j % 3 != 0:
-                sum+=j
-        else:
-            print(j)
-            if j % 3 != 0:
-                sum+=j
-        a += 1
+
+matrix = []
+index = 0
+for i in range(w):
+    list = []
+    for j in range(h):
+        list.append(spisok[index % len(spisok)])
+        index += 1
+    matrix.append(list)
+
+for list in matrix:
+    for num in list:
+        print(f"|{num:{3}}", end="|")
     print()
-    print()
-    print(sum)#выводит сумму некратных 3
+
+sum = 0
+for list in matrix:
+    for num in list:
+        if num % 3 != 0:
+            sum += num
+
+print(f"суммка не кратных 3: {sum}")
